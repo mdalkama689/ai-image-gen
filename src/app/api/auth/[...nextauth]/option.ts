@@ -15,11 +15,13 @@ const authOptions: NextAuthOptions = {
           placeholder: "*******",
         },
       },
+      // @ts-ignore
       async authorize(credentials) {
         if (!credentials?.password || !credentials?.email) {
           throw new Error("Please provide email and password both");
         }
 
+  
         const user = await prisma.user.findFirst({
           where: {
             email: credentials.email,
